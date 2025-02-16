@@ -36,7 +36,7 @@
                                                     class="btn btn-sm btn-secondary mr-2">Detalhes</a>
                                                 <a href="{{ route('users.edit', $user->id) }}"
                                                     class="btn btn-sm btn-primary mr-2">Editar</a>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="delete"
                                                     style="display: inline">
                                                     @csrf
                                                     @method('DELETE')

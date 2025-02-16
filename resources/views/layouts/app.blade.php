@@ -90,6 +90,8 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script type="module">
         import toast from '{{ URL::asset('js/toast.js') }}';
 
@@ -106,6 +108,36 @@
         @if (session('error'))
             toast('error', '{{ session('error') }}');
         @endif
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.delete').forEach(form => {
+                form.onsubmit = event => {
+                    event.preventDefault();
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger mr-2"
+                        },
+                        buttonsStyling: false
+                    });
+                    swalWithBootstrapButtons.fire({
+                        title: "Você tem certeza?",
+                        text: "Não será possível reverter essa ação!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Sim",
+                        cancelButtonText: "Cancelar!",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                };
+            });
+        });
     </script>
 </body>
 

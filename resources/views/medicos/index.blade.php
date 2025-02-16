@@ -9,8 +9,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Lista de Médicos</h6>
-                    <a href="{{ route('medicos.create') }}"
-                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <a href="{{ route('medicos.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fas fa-plus fa-sm text-white-50"></i> Adicionar Médico
                     </a>
                 </div>
@@ -35,11 +34,15 @@
                                         <td class="text-nowrap">{{ $medico->created_at->format('d/m/Y H:i') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('medicos.show', $medico->id) }}"
-                                                    class="btn btn-sm btn-secondary mr-2">Detalhes</a>
-                                                <a href="{{ route('medicos.edit', $medico->id) }}"
-                                                    class="btn btn-sm btn-primary mr-2">Editar</a>
-                                                <form action="{{ route('medicos.destroy', $medico->id) }}"
+                                                <div>
+                                                    <a href="{{ route('medicos.show', $medico->id) }}"
+                                                        class="btn btn-sm btn-secondary mr-2">Detalhes</a>
+                                                </div>
+                                                <div>
+                                                    <a href="{{ route('medicos.edit', $medico->id) }}"
+                                                        class="btn btn-sm btn-primary mr-2">Editar</a>
+                                                </div>
+                                                <form action="{{ route('medicos.destroy', $medico->id) }}" class="delete"
                                                     method="POST" style="display: inline">
                                                     @csrf
                                                     @method('DELETE')
