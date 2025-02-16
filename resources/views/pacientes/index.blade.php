@@ -23,6 +23,7 @@
                                     <th class="text-nowrap">Email</th>
                                     <th class="text-nowrap">CPF</th>
                                     <th class="text-nowrap">Data de Nascimento</th>
+                                    <th class="text-nowrap">Criado em</th>
                                     <th class="text-nowrap">Ações</th>
                                 </tr>
                             </thead>
@@ -33,8 +34,11 @@
                                         <td class="text-nowrap">{{ $paciente->email }}</td>
                                         <td class="text-nowrap">{{ $paciente->cpf }}</td>
                                         <td class="text-nowrap">{{ $paciente->data_nascimento }}</td>
+                                        <td class="text-nowrap">{{ $paciente->created_at->format('d/m/Y H:i') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
+                                                <a href="{{ route('pacientes.show', $paciente->id) }}"
+                                                    class="btn btn-sm btn-secondary mr-2">Detalhes</a>
                                                 <a href="{{ route('pacientes.edit', $paciente->id) }}"
                                                     class="btn btn-sm btn-primary mr-2">Editar</a>
                                                 <form action="{{ route('pacientes.destroy', $paciente->id) }}"

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAtendimentoRequest;
 use App\Http\Requests\UpdateAtendimentoRequest;
 use App\Models\Atendimento;
+use App\Models\Medico;
+use App\Models\Paciente;
 
 class AtendimentoController extends Controller
 {
@@ -22,7 +24,10 @@ class AtendimentoController extends Controller
      */
     public function create(): \Illuminate\View\View
     {
-        return view('atendimentos.create');
+        $pacientes = Paciente::all();
+        $medicos = Medico::all();
+        
+        return view('atendimentos.create', compact('pacientes', 'medicos'));
     }
 
     /**
@@ -47,7 +52,10 @@ class AtendimentoController extends Controller
      */
     public function edit(Atendimento $atendimento): \Illuminate\View\View
     {
-        return view('atendimentos.edit', compact('atendimento'));
+        $pacientes = Paciente::all();
+        $medicos = Medico::all();
+
+        return view('atendimentos.edit', compact('atendimento', 'pacientes', 'medicos'));
     }
 
     /**
