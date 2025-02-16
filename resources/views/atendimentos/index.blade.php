@@ -24,6 +24,7 @@
                                     <th class="text-nowrap">Crm do Médico</th>
                                     <th class="text-nowrap">Especialidade</th>
                                     <th class="text-nowrap">Data do Atendimento</th>
+                                    <th class="text-nowrap">Criado em</th>
                                     <th class="text-nowrap">Ações</th>
                                 </tr>
                             </thead>
@@ -35,6 +36,7 @@
                                         <td class="text-nowrap">{{ $atendimento->medico->crm }}</td>
                                         <td class="text-nowrap">{{ $atendimento->medico->especialidade }}</td>
                                         <td class="text-nowrap">{{ $atendimento->data_atendimento->format('d/m/Y H:i:s') }}
+                                            <td class="text-nowrap">{{ $atendimento->created_at->format('d/m/Y H:i:s') }}
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">

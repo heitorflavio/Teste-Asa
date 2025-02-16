@@ -13,7 +13,7 @@ class MedicoController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $medicos = Medico::paginate(10);
+        $medicos = Medico::orderBy('created_at', 'desc')->paginate(10);
         return view('medicos.index', compact('medicos'));
     }
 

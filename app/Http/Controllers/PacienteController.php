@@ -13,7 +13,7 @@ class PacienteController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $pacientes = Paciente::paginate(10);
+        $pacientes = Paciente::orderBy('created_at', 'desc')->paginate(10);
         return view('pacientes.index', compact('pacientes'));
     }
 
