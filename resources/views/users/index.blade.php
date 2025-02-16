@@ -36,12 +36,18 @@
                                                     class="btn btn-sm btn-secondary mr-2">Detalhes</a>
                                                 <a href="{{ route('users.edit', $user->id) }}"
                                                     class="btn btn-sm btn-primary mr-2">Editar</a>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="delete"
-                                                    style="display: inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                                                </form>
+                                                @if ($user->id !== auth()->user()->id)
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                        class="delete" style="display: inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-danger">Excluir</button>
+                                                    </form>
+                                                @else
+                                                    <button type="button" class="btn btn-sm btn-danger"
+                                                        disabled>Excluir</button>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

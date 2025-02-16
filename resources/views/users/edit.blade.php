@@ -16,19 +16,19 @@
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Nome</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                value="{{ $user->name }}" required>
+                                value="{{ old('name', $user->name) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email"><i class="fas fa-envelope"></i> Email</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                value="{{ $user->email }}" required>
+                                value="{{ old('email', $user->email) }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="password"><i class="fas fa-lock"></i> Nova Senha (opcional)</label>
+                            <label for="password"><i class="fas fa-lock"></i> Nova Senha</label>
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="form-group">
-                            <label for="password_confirmation"><i class="fas fa-lock"></i> Confirmar Nova Senha</label>
+                            <label for="password_confirmation"><i class="fas fa-lock"></i>Confirmar Nova Senha</label>
                             <input type="password" class="form-control" id="password_confirmation"
                                 name="password_confirmation">
                         </div>

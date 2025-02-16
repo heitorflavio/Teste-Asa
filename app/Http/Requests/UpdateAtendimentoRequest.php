@@ -22,9 +22,9 @@ class UpdateAtendimentoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data_atendimento' => ['date'],
-            'medico_id' => ['exists:medicos,id'],
-            'paciente_id' => ['exists:pacientes,id'],
+            'data_atendimento' => ['required', 'date'],
+            'medico_id' => ['required', 'exists:medicos,id'],
+            'paciente_id' => ['required', 'exists:pacientes,id'],
         ];
     }
 }

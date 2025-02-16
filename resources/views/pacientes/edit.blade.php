@@ -17,22 +17,22 @@
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input type="text" class="form-control" id="nome" name="nome"
-                                value="{{ $paciente->nome }}" required>
+                                value="{{ old('nome', $paciente->nome) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                value="{{ $paciente->email }}" required>
+                                value="{{ old('email', $paciente->email) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="cpf">CPF</label>
                             <input type="text" class="form-control" id="cpf" name="cpf"
-                                value="{{ $paciente->cpf }}" required>
+                                value="{{ old('cpf', $paciente->cpf) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="data_nascimento">Data de Nascimento</label>
                             <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"
-                                value="{{ $paciente->data_nascimento }}" required>
+                                value="{{ old('data_nascimento', $paciente->data_nascimento) }}" required>
                         </div>
                     </div>
                     <div class="card-footer">

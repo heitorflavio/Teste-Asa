@@ -17,17 +17,17 @@
                         <div class="form-group">
                             <label for="nome"><i class="fas fa-user"></i> Nome</label>
                             <input type="text" class="form-control" id="nome" name="nome"
-                                value="{{ $medico->nome }}" required>
+                                value="{{ old('nome', $medico->nome) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="crm"><i class="fas fa-id-badge"></i> CRM</label>
                             <input type="text" class="form-control" id="crm" name="crm"
-                                value="{{ $medico->crm }}" required>
+                                value="{{ old('crm', $medico->crm) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="especialidade"><i class="fas fa-stethoscope"></i> Especialidade</label>
                             <input type="text" class="form-control" id="especialidade" name="especialidade"
-                                value="{{ $medico->especialidade }}" required>
+                                value="{{ old('especialidade', $medico->especialidade) }}" required>
                         </div>
 
                     </div>

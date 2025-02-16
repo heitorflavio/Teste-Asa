@@ -14,15 +14,15 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="nome"><i class="fas fa-user"></i> Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome" required>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="crm"><i class="fas fa-id-badge"></i> CRM</label>
-                            <input type="text" class="form-control" id="crm" name="crm" required>
+                            <input type="text" class="form-control" id="crm" name="crm" value="{{ old('crm') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="especialidade"><i class="fas fa-stethoscope"></i> Especialidade</label>
-                            <input type="text" class="form-control" id="especialidade" name="especialidade" required>
+                            <input type="text" class="form-control" id="especialidade" name="especialidade" value="{{ old('especialidade') }}" required>
                         </div>
                     </div>
                     <div class="card-footer">

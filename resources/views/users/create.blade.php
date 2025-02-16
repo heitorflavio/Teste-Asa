@@ -14,11 +14,13 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Nome</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ old('name') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ old('email') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="password"><i class="fas fa-lock"></i> Senha</label>
