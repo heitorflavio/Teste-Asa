@@ -26,7 +26,7 @@ class AtendimentoController extends Controller
     {
         $pacientes = Paciente::all();
         $medicos = Medico::all();
-        
+
         return view('atendimentos.create', compact('pacientes', 'medicos'));
     }
 
@@ -36,7 +36,7 @@ class AtendimentoController extends Controller
     public function store(StoreAtendimentoRequest $request): \Illuminate\Http\RedirectResponse
     {
         Atendimento::create($request->validated());
-        return redirect()->route('atendimentos.index');
+        return redirect()->route('atendimentos.index')->with('success', 'Atendimento criado com sucesso!');
     }
 
     /**
@@ -64,7 +64,7 @@ class AtendimentoController extends Controller
     public function update(UpdateAtendimentoRequest $request, Atendimento $atendimento): \Illuminate\Http\RedirectResponse
     {
         $atendimento->update($request->validated());
-        return redirect()->route('atendimentos.index');
+        return redirect()->route('atendimentos.index')->with('success', 'Atendimento atualizado com sucesso!');
     }
 
     /**
@@ -73,6 +73,6 @@ class AtendimentoController extends Controller
     public function destroy(Atendimento $atendimento): \Illuminate\Http\RedirectResponse
     {
         $atendimento->delete();
-        return redirect()->route('atendimentos.index');
+        return redirect()->route('atendimentos.index')->with('success', 'Atendimento deletado com sucesso!');
     }
 }

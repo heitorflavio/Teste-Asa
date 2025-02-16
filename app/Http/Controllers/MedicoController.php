@@ -31,7 +31,7 @@ class MedicoController extends Controller
     public function store(StoreMedicoRequest $request): \Illuminate\Http\RedirectResponse
     {
         Medico::create($request->validated());
-        return redirect()->route('medicos.index');
+        return redirect()->route('medicos.index')->with('success', 'Médico criado com sucesso!');
     }
 
     /**
@@ -56,7 +56,7 @@ class MedicoController extends Controller
     public function update(UpdateMedicoRequest $request, Medico $medico): \Illuminate\Http\RedirectResponse
     {
         $medico->update($request->validated());
-        return redirect()->route('medicos.index');
+        return redirect()->route('medicos.index')->with('success', 'Médico atualizado com sucesso!');
     }
 
     /**
@@ -65,6 +65,6 @@ class MedicoController extends Controller
     public function destroy(Medico $medico): \Illuminate\Http\RedirectResponse
     {
         $medico->delete();
-        return redirect()->route('medicos.index');
+        return redirect()->route('medicos.index')->with('success', 'Médico deletado com sucesso!');
     }
 }

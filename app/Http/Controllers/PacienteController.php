@@ -31,7 +31,7 @@ class PacienteController extends Controller
     public function store(StorePacienteRequest $request): \Illuminate\Http\RedirectResponse
     {
         Paciente::create($request->validated());
-        return redirect()->route('pacientes.index');
+        return redirect()->route('pacientes.index')->with('success', 'Paciente criado com sucesso!');
     }
 
     /**
@@ -56,7 +56,7 @@ class PacienteController extends Controller
     public function update(UpdatePacienteRequest $request, Paciente $paciente): \Illuminate\Http\RedirectResponse
     {
         $paciente->update($request->validated());
-        return redirect()->route('pacientes.index');
+        return redirect()->route('pacientes.index')->with('success', 'Paciente atualizado com sucesso!');
     }
 
     /**
@@ -65,6 +65,6 @@ class PacienteController extends Controller
     public function destroy(Paciente $paciente): \Illuminate\Http\RedirectResponse
     {
         $paciente->delete();
-        return redirect()->route('pacientes.index');
+        return redirect()->route('pacientes.index')->with('success', 'Paciente deletado com sucesso!');
     }
 }

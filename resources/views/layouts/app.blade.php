@@ -16,6 +16,8 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
@@ -86,11 +88,25 @@
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    <script type="module">
+        import toast from '{{ URL::asset('js/toast.js') }}';
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $erro)
+                toast('error', '{{ $erro }}');
+            @endforeach
+        @endif
+
+        @if (session('success'))
+            toast('success', '{{ session('success') }}');
+        @endif
+
+        @if (session('error'))
+            toast('error', '{{ session('error') }}');
+        @endif
+    </script>
 </body>
 
 </html>
