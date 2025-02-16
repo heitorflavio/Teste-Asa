@@ -6,6 +6,7 @@ use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
@@ -16,4 +17,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('atendimentos', AtendimentoController::class);
     Route::resource('medicos', MedicoController::class);
     Route::resource('pacientes', PacienteController::class);
+    Route::resource('users', UserController::class);
 });

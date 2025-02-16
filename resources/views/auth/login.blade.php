@@ -19,7 +19,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                            name="email" aria-describedby="emailHelp"
+                                            value="{{ old('email') }}" name="email" aria-describedby="emailHelp"
                                             placeholder="Enter Email Address...">
                                     </div>
                                     <div class="form-group">

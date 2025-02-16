@@ -44,6 +44,12 @@
             <span>Atendimentos</span></a>
     </li>
 
+    <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Usuários</span></a>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

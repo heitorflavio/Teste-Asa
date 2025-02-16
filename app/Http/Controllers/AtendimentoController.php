@@ -35,8 +35,12 @@ class AtendimentoController extends Controller
      */
     public function store(StoreAtendimentoRequest $request): \Illuminate\Http\RedirectResponse
     {
-        Atendimento::create($request->validated());
-        return redirect()->route('atendimentos.index')->with('success', 'Atendimento criado com sucesso!');
+        try {
+            Atendimento::create($request->validated());
+            return redirect()->route('atendimentos.index')->with('success', 'Atendimento criado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('atendimentos.index')->with('error', 'Erro ao criar atendimento!');
+        }
     }
 
     /**
@@ -63,8 +67,12 @@ class AtendimentoController extends Controller
      */
     public function update(UpdateAtendimentoRequest $request, Atendimento $atendimento): \Illuminate\Http\RedirectResponse
     {
-        $atendimento->update($request->validated());
-        return redirect()->route('atendimentos.index')->with('success', 'Atendimento atualizado com sucesso!');
+        try {
+            $atendimento->update($request->validated());
+            return redirect()->route('atendimentos.index')->with('success', 'Atendimento atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('atendimentos.index')->with('error', 'Erro ao atualizar atendimento!');
+        }
     }
 
     /**
@@ -72,7 +80,11 @@ class AtendimentoController extends Controller
      */
     public function destroy(Atendimento $atendimento): \Illuminate\Http\RedirectResponse
     {
-        $atendimento->delete();
-        return redirect()->route('atendimentos.index')->with('success', 'Atendimento deletado com sucesso!');
+        try {
+            $atendimento->delete();
+            return redirect()->route('atendimentos.index')->with('success', 'Atendimento deletado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('atendimentos.index')->with('error', 'Erro ao deletar atendimento!');
+        }
     }
 }
