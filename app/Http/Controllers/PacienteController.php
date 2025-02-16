@@ -13,7 +13,7 @@ class PacienteController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $pacientes = Paciente::paginate(10);
+        $pacientes = Paciente::orderBy('created_at', 'desc')->paginate(10);
         return view('pacientes.index', compact('pacientes'));
     }
 
@@ -30,8 +30,12 @@ class PacienteController extends Controller
      */
     public function store(StorePacienteRequest $request): \Illuminate\Http\RedirectResponse
     {
-        Paciente::create($request->validated());
-        return redirect()->route('pacientes.index');
+        try {
+            Paciente::create($request->validated());
+            return redirect()->route('pacientes.index')->with('success', 'Paciente criado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('pacientes.index')->with('error', 'Erro ao criar paciente!');
+        }
     }
 
     /**
@@ -55,8 +59,12 @@ class PacienteController extends Controller
      */
     public function update(UpdatePacienteRequest $request, Paciente $paciente): \Illuminate\Http\RedirectResponse
     {
-        $paciente->update($request->validated());
-        return redirect()->route('pacientes.index');
+        try {
+            $paciente->update($request->validated());
+            return redirect()->route('pacientes.index')->with('success', 'Paciente atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('pacientes.index')->with('error', 'Erro ao atualizar paciente!');
+        }
     }
 
     /**
@@ -64,7 +72,11 @@ class PacienteController extends Controller
      */
     public function destroy(Paciente $paciente): \Illuminate\Http\RedirectResponse
     {
-        $paciente->delete();
-        return redirect()->route('pacientes.index');
+        try {
+            $paciente->delete();
+            return redirect()->route('pacientes.index')->with('success', 'Paciente deletado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('pacientes.index')->with('error', 'Erro ao deletar paciente!');
+        }
     }
 }
