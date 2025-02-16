@@ -1,11 +1,13 @@
 <?php
 
 use App\Models\Paciente;
+use App\Models\User;
 
 test('index method returns a view with pacientes', function () {
     Paciente::factory()->count(15)->create();
+    $user = User::factory()->create();
 
-    $response = $this->get(route('pacientes.index'));
+    $response = $this->actingAs($user)->get(route('pacientes.index'));
 
     $response->assertStatus(200)
         ->assertViewIs('pacientes.index')
@@ -13,7 +15,8 @@ test('index method returns a view with pacientes', function () {
 });
 
 test('create method returns the create view', function () {
-    $response = $this->get(route('pacientes.create'));
+    $user = User::factory()->create();
+    $response = $this->actingAs($user)->get(route('pacientes.create'));
 
     $response->assertStatus(200)
         ->assertViewIs('pacientes.create');
@@ -27,7 +30,9 @@ test('store method creates a new paciente and redirects', function () {
         'data_nascimento' => '1990-01-01',
     ];
 
-    $response = $this->post(route('pacientes.store'), $data);
+    $user = User::factory()->create();
+
+    $response = $this->actingAs($user)->post(route('pacientes.store'), $data);
 
     $response->assertRedirect(route('pacientes.index'));
     $this->assertDatabaseHas('pacientes', $data);
@@ -35,8 +40,9 @@ test('store method creates a new paciente and redirects', function () {
 
 test('show method returns the show view with the paciente', function () {
     $paciente = Paciente::factory()->create();
+    $user = User::factory()->create();
 
-    $response = $this->get(route('pacientes.show', $paciente));
+    $response = $this->actingAs($user)->get(route('pacientes.show', $paciente));
 
     $response->assertStatus(200)
         ->assertViewIs('pacientes.show')
@@ -45,8 +51,9 @@ test('show method returns the show view with the paciente', function () {
 
 test('edit method returns the edit view with the paciente', function () {
     $paciente = Paciente::factory()->create();
+    $user = User::factory()->create();
 
-    $response = $this->get(route('pacientes.edit', $paciente));
+    $response = $this->actingAs($user)->get(route('pacientes.edit', $paciente));
 
     $response->assertStatus(200)
         ->assertViewIs('pacientes.edit')
@@ -55,6 +62,8 @@ test('edit method returns the edit view with the paciente', function () {
 
 test('update method updates the paciente and redirects', function () {
     $paciente = Paciente::factory()->create();
+    $user = User::factory()->create();
+
     $data = [
         'nome' => 'Jane Doe',
         'email' => 'jane@example.com',
@@ -62,7 +71,7 @@ test('update method updates the paciente and redirects', function () {
         'data_nascimento' => '1995-01-01',
     ];
 
-    $response = $this->put(route('pacientes.update', $paciente), $data);
+    $response = $this->actingAs($user)->put(route('pacientes.update', $paciente), $data);
 
     $response->assertRedirect(route('pacientes.index'));
     $this->assertDatabaseHas('pacientes', $data);
@@ -70,8 +79,9 @@ test('update method updates the paciente and redirects', function () {
 
 test('destroy method deletes the paciente and redirects', function () {
     $paciente = Paciente::factory()->create();
+    $user = User::factory()->create();
 
-    $response = $this->delete(route('pacientes.destroy', $paciente));
+    $response = $this->actingAs($user)->delete(route('pacientes.destroy', $paciente));
 
     $response->assertRedirect(route('pacientes.index'));
     $this->assertDatabaseMissing('pacientes', ['id' => $paciente->id]);

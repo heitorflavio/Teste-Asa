@@ -13,7 +13,7 @@ class MedicoController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $medicos = Medico::paginate(10);
+        $medicos = Medico::orderBy('created_at', 'desc')->paginate(10);
         return view('medicos.index', compact('medicos'));
     }
 
@@ -30,8 +30,12 @@ class MedicoController extends Controller
      */
     public function store(StoreMedicoRequest $request): \Illuminate\Http\RedirectResponse
     {
-        Medico::create($request->validated());
-        return redirect()->route('medicos.index');
+        try {
+            Medico::create($request->validated());
+            return redirect()->route('medicos.index')->with('success', 'Médico criado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('medicos.index')->with('error', 'Erro ao criar médico!');
+        }
     }
 
     /**
@@ -55,8 +59,12 @@ class MedicoController extends Controller
      */
     public function update(UpdateMedicoRequest $request, Medico $medico): \Illuminate\Http\RedirectResponse
     {
-        $medico->update($request->validated());
-        return redirect()->route('medicos.index');
+        try {
+            $medico->update($request->validated());
+            return redirect()->route('medicos.index')->with('success', 'Médico atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('medicos.index')->with('error', 'Erro ao atualizar médico!');
+        }
     }
 
     /**
@@ -64,7 +72,11 @@ class MedicoController extends Controller
      */
     public function destroy(Medico $medico): \Illuminate\Http\RedirectResponse
     {
-        $medico->delete();
-        return redirect()->route('medicos.index');
+        try {
+            $medico->delete();
+            return redirect()->route('medicos.index')->with('success', 'Médico deletado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('medicos.index')->with('error', 'Erro ao deletar médico!');
+        }
     }
 }
