@@ -71,4 +71,39 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Calendário</h6>
+                </div>
+                <div class="card-body">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('scripts')
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'pt-br',
+                events: [
+                    @foreach ($agenda as $agendamento)
+                        {
+                            title: '{{ $agendamento->paciente->nome }}',
+                            start: '{{ $agendamento->data_atendimento }}',
+                            url: '{{ route('atendimentos.show', $agendamento->id) }}'
+                        },
+                    @endforeach
+                ]
+            });
+            calendar.render();
+        });
+    </script>
