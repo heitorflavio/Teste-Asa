@@ -52,7 +52,7 @@ Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para r
 
     ```
 
-4.1 **Composer no Docker**
+4. **Composer no Docker**
 
 [Composer Install](https://laravel.com/docs/11.x/sail#installing-composer-dependencies-for-existing-projects).
 
