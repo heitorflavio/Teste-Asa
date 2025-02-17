@@ -65,7 +65,7 @@ Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para r
 6.  **Execute as migrações do banco de dados:**
 
     ```sh
-    ./vendor/bin/sail artisan migrate
+    ./vendor/bin/sail artisan migrate --seed
 
     ```
 
