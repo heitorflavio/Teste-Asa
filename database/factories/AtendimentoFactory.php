@@ -17,7 +17,7 @@ class AtendimentoFactory extends Factory
     public function definition(): array
     {
         return [
-            'data_atendimento' => date('Y-m-d H:i:s'),
+            'data_atendimento' =>  $this->faker->dateTimeThisMonth(),
             'medico_id' => \App\Models\Medico::factory(),
             'paciente_id' => \App\Models\Paciente::factory(),
         ];

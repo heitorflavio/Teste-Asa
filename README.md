@@ -1,66 +1,107 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sobre o Projeto
 
-## About Laravel
+Este projeto utiliza o framework Laravel, um dos mais populares para desenvolvimento web em PHP. Ele fornece uma sintaxe elegante e ferramentas poderosas para criar aplicações modernas e escaláveis.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O projeto foi desenvolvido seguindo as diretrizes da documentação disponível em [GitHub](https://github.com/BeeCoffee/teste-tecnico-php-laravel), com a adição dos seguintes módulos extras:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   **Dashboard**
+-   **Testes de integração**
+-   **CRUD de usuários**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Configuração e Execução com Laravel Sail
 
-## Learning Laravel
+Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para rodar aplicações Laravel sem necessidade de configurar um ambiente local manualmente.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Pré-requisitos
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   [Docker e Docker Compose](https://docs.docker.com/get-docker/) instalados na máquina.
+-   Git instalado para clonar o repositório.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Passos para rodar o projeto
 
-## Laravel Sponsors
+1.  **Clone o repositório:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```sh
+    git clone https://github.com/heitorflavio/Teste-Asa.git
+    cd Teste-Asa
 
-### Premium Partners
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2.  **Copie o arquivo de configuração:**
 
-## Contributing
+    ```sh
+    cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```
 
-## Code of Conduct
+3.  **Inicialize o Laravel Sail:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```sh
+    ./vendor/bin/sail up -d
 
-## Security Vulnerabilities
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Isso irá iniciar os containers do Docker em modo background.
 
-## License
+4.  **Instale as dependências:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```sh
+    ./vendor/bin/sail composer install
+
+    ```
+
+5.  **Gere a chave da aplicação:**
+
+    ```sh
+    ./vendor/bin/sail artisan key:generate
+
+    ```
+
+6.  **Execute as migrações do banco de dados:**
+
+    ```sh
+    ./vendor/bin/sail artisan migrate
+
+    ```
+
+7.  **Acesse o projeto no navegador:** O Laravel estará disponível em [http://localhost](http://localhost/).
+
+### Comandos Úteis
+
+-   **Parar os containers:**
+
+    ```sh
+    ./vendor/bin/sail down
+
+    ```
+
+-   **Acessar o terminal dentro do container:**
+
+    ```sh
+    ./vendor/bin/sail shell
+
+    ```
+
+-   **Rodar testes:**
+
+    ```sh
+    ./vendor/bin/sail test
+
+    ```
+
+-   **Rodar PhpStan**
+
+    ```sh
+    ./vendor/bin/phpstan analyse --memory-limit=2G
+
+    ```
+
+## Contribuindo
+
+Contribuições são bem-vindas! Para contribuir, siga as diretrizes no [guia de contribuição do Laravel](https://laravel.com/docs/contributions).
+
+## Licença
+
+Este projeto é open-source e licenciado sob a [licença MIT](https://opensource.org/licenses/MIT).
