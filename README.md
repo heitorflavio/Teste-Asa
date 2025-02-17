@@ -18,6 +18,7 @@ Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para r
 
 -   [Docker e Docker Compose](https://docs.docker.com/get-docker/) instalados na máquina.
 -   Git instalado para clonar o repositório.
+-   [Laravel Sail](https://laravel.com/docs/11.x/sail) 
 
 ### Passos para rodar o projeto
 
@@ -36,7 +37,16 @@ Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para r
 
     ```
 
-3.  **Inicialize o Laravel Sail:**
+3.  **Instale as dependências:**
+
+    ```sh
+    ./vendor/bin/sail composer install
+
+    ```
+
+[Composer Install Docker](https://laravel.com/docs/11.x/sail#installing-composer-dependencies-for-existing-projects).
+
+4.  **Inicialize o Laravel Sail:**
 
     ```sh
     ./vendor/bin/sail up -d
@@ -44,17 +54,6 @@ Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para r
     ```
 
     Isso irá iniciar os containers do Docker em modo background.
-
-4.  **Instale as dependências:**
-
-    ```sh
-    ./vendor/bin/sail composer install
-
-    ```
-
-4. **Composer no Docker**
-
-[Composer Install](https://laravel.com/docs/11.x/sail#installing-composer-dependencies-for-existing-projects).
 
 5.  **Gere a chave da aplicação:**
 
