@@ -9,7 +9,9 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"
+                            style="background-image: url('{{ asset('img/login.jpg') }}');"
+                        ></div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
@@ -20,11 +22,11 @@
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user" id="exampleInputEmail"
                                             value="{{ old('email') }}" name="email" aria-describedby="emailHelp"
-                                            placeholder="Enter Email Address...">
+                                            placeholder="Digite seu e-mail">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" name="password"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="exampleInputPassword" placeholder="Senha">
                                     </div>
                                     @if ($errors->any())
                                         @foreach ($errors->all() as $error)
