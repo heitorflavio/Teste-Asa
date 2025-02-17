@@ -47,10 +47,22 @@ Este projeto utiliza o Laravel Sail, uma solução leve baseada em Docker para r
 
 4.  **Instale as dependências:**
 
-    ```sh
-    ./vendor/bin/sail composer install
+        ```sh
+        ./vendor/bin/sail composer install
 
-    ```
+        ```
+
+4.1 **Composer no Docker**
+
+        ```sh
+        docker run --rm \
+        -u "$(id -u):$(id -g)" \
+        -v "$(pwd):/var/www/html" \
+        -w /var/www/html \
+        laravelsail/php84-composer:latest \
+        composer install --ignore-platform-reqs
+
+        ```
 
 5.  **Gere a chave da aplicação:**
 
